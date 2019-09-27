@@ -77,7 +77,15 @@ if !exists('g:gruvbox_contrast_light')
   let g:gruvbox_contrast_light='medium'
 endif
 
+if !exists('g:gruvbox_soft_diff')
+  let g:gruvbox_soft_diff=0
+endif
+
 let s:is_dark=(&background == 'dark')
+
+if !exists('g:gruvbox_improved_diff')
+  let g:gruvbox_improved_diff=1
+endif
 
 " }}}
 " Palette: {{{
@@ -650,14 +658,17 @@ endif
 " }}}
 " Diffs: {{{
 
-call s:HL('DiffDelete', s:red, s:bg0, s:inverse)
-call s:HL('DiffAdd',    s:green, s:bg0, s:inverse)
-"call s:HL('DiffChange', s:bg0, s:blue)
-"call s:HL('DiffText',   s:bg0, s:yellow)
-
-" Alternative setting
-call s:HL('DiffChange', s:aqua, s:bg0, s:inverse)
-call s:HL('DiffText',   s:yellow, s:bg0, s:inverse)
+if (g:gruvbox_improved_diff == 1)
+  call s:HL('DiffDelete', s:red, s:bg0, s:inverse)
+  call s:HL('DiffAdd',    s:green, s:bg0, s:inverse)
+  call s:HL('DiffChange', s:aqua, s:bg0, s:inverse)
+  call s:HL('DiffText',   s:yellow, s:bg0, s:inverse)
+else
+  call s:HL('DiffDelete', s:red, s:bg1)
+  call s:HL('DiffAdd',    s:none, s:bg1)
+  call s:HL('DiffChange', s:none, s:bg1)
+  call s:HL('DiffText',   s:none, s:none, s:bold . s:inverse)
+endif
 
 " }}}
 " Spelling: {{{
