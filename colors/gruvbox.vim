@@ -77,10 +77,6 @@ if !exists('g:gruvbox_contrast_light')
   let g:gruvbox_contrast_light='medium'
 endif
 
-if !exists('g:gruvbox_soft_diff')
-  let g:gruvbox_soft_diff=0
-endif
-
 let s:is_dark=(&background == 'dark')
 
 if !exists('g:gruvbox_improved_diff')
@@ -667,7 +663,7 @@ else
   call s:HL('DiffDelete', s:red, s:bg1)
   call s:HL('DiffAdd',    s:none, s:bg1)
   call s:HL('DiffChange', s:none, s:bg1)
-  call s:HL('DiffText',   s:none, s:none, s:bold . s:inverse)
+  call s:HL('DiffText',   s:none, s:bg0, s:bold  . s:inverse)
 endif
 
 " }}}
